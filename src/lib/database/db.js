@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 let { db_User, db_pass, NODE_ENV } = process.env;
 let DBName = NODE_ENV === "production" ? "production" : "development";
 export const DB_URL = `"mongodb+srv://david:david123@personal.mlrfxnw.mongodb.net/${DBName}?retryWrites=true&w=majority`;
-// export const DB_URL = `mongodb://localhost:27017/ashharProject`;
 
 let connection = {};
 
@@ -21,7 +20,7 @@ export async function DBConnect() {
       console.log(` "${NODE_ENV}" Database connection already exists`);
     }
   } catch (error) {
-    console.error(`L-24DB, ${NODE_ENV} DB connection Failed :`, error);
+    console.error(`L-23DB, ${NODE_ENV} DB connection Failed :`, error);
     // Graceful exit in case of a connection error
     // process.exit(1);
   }
