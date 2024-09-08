@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 let { db_User, db_pass, NODE_ENV } = process.env;
 let DBName = NODE_ENV === "production" ? "production" : "development";
-// export const DB_URL = `"mongodb+srv://david:david123@personal.mlrfxnw.mongodb.net/${DBName}?retryWrites=true&w=majority`;
-export const DB_URL = `mongodb://localhost:27017/ashharProject`;
+export const DB_URL = `"mongodb+srv://david:david123@personal.mlrfxnw.mongodb.net/${DBName}?retryWrites=true&w=majority`;
+// export const DB_URL = `mongodb://localhost:27017/ashharProject`;
 
 let connection = {};
 
