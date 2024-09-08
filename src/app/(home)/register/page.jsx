@@ -10,6 +10,7 @@ import { signUpAction } from "@/components/component/_actions";
 import { useEffect } from "react";
 import { toast } from "sonner";
 import { SubmitButton } from "@/components/component/submit-button";
+import Image from "next/image";
 
 const Register = () => {
   const initialState = {
@@ -36,7 +37,21 @@ const Register = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <div className="w-full max-w-md p-8 space-y-8 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold text-center text-black">Logo</h2>
+        {/* <h2 className="text-2xl font-bold text-center text-black">Logo</h2> */}
+        <Link href={"/"}>
+          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+            <Image
+              className="mx-auto h-10 w-auto"
+              src="/logo.jpg"
+              alt="company logo"
+              width={1200}
+              height={50}
+            />
+            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+              Sign in to your account
+            </h2>
+          </div>
+        </Link>
         <form className="mt-8 space-y-6" action={formAction}>
           <div className="space-y-4">
             <div>

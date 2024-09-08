@@ -36,11 +36,11 @@ const Login = () => {
 
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-      {/* <Link href={"/"}>
+      <Link href={"/"}>
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <Image
             className="mx-auto h-10 w-auto"
-            src="/sarvanjana.png"
+            src="/logo.jpg"
             alt="company logo"
             width={1200}
             height={50}
@@ -49,8 +49,8 @@ const Login = () => {
             Sign in to your account
           </h2>
         </div>
-      </Link> */}
-      <div className="flex justify-center items-center font-bold">Logo</div>
+      </Link>
+      {/* <div className="flex justify-center items-center font-bold">Logo</div> */}
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form className="space-y-6" action={formAction}>
