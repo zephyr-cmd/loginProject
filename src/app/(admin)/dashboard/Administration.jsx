@@ -9,7 +9,8 @@ import Link from "next/link";
 import Appointment from "@/app/(admin)/dashboard/appointment/page";
 import Customer from "@/app/(admin)/dashboard/customers/page";
 import SalesLead from "@/app/(admin)/dashboard/free-opinion/page";
-import { AppointmentIcon, DoctorIcon } from "@/app/_components/social";
+import { AppointmentIcon, DoctorIcon } from "@/components/icons/social";
+// import { AppointmentIcon, DoctorIcon } from "@/app/_components/social";
 
 export function Administration() {
   const [activeTab, setActiveTab] = useState("home");

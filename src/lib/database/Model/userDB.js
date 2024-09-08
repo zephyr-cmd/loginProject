@@ -46,7 +46,8 @@ const schema = new mongoose.Schema(
       default: false,
     },
     sport: { type: String, default: "" },
-    about: { type: String, default: "" },
+    youtubeLink: { type: String, default: "" },
+    message: { type: String, default: "" },
     // role: { type: String, default: "user" },
     password: {
       type: String,

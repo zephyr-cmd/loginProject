@@ -52,9 +52,8 @@ export async function POST(request) {
         userId: user._id,
         // phoneNumber: user.phoneNumber,
         // email: user.email,
-        name: user.name,
+        _id: user._id,
         token: user.token,
-        role: user.role,
       },
     });
   } catch (error) {

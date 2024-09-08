@@ -7,7 +7,8 @@ import {
   LineChartIcon,
   UsersIcon,
 } from "@/components/icons/icons2";
-import { AppointmentIcon, DoctorIcon } from "@/app/_components/social";
+// import { AppointmentIcon, DoctorIcon } from "@/app/_components/social";
+import { AppointmentIcon, DoctorIcon } from "@/components/icons/social";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -41,7 +42,7 @@ function Sidebar({ className, role, sideBarOpen }) {
       ];
     } else {
       return [
-        // { name: "home", logo: HomeIcon },
+        { name: "home", logo: HomeIcon },
         // { name: "appointment", logo: AppointmentIcon },
         // { name: "customers", logo: DoctorIcon },
       ];

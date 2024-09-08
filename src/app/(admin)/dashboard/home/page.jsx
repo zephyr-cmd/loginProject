@@ -20,7 +20,7 @@ import { ResponsiveBar } from "@nivo/bar";
 import { ResponsiveLine } from "@nivo/line";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
-import { NewAppointmentForm } from "@/app/(admin)/_resources/modalForm/newAppointment";
+// import { NewAppointmentForm } from "@/app/(admin)/_resources/modalForm/newAppointment";
 import { dateTimeConversion } from "@/components/helper/dateConversion";
 import {
   Pagination,
@@ -31,9 +31,10 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import Fitness from "@/app/(auth)/fitness/fitness";
+// import Fitness from "@/app/(auth)/fitness/fitness";
 import { Modal, Modal1 } from "@/components/helper/Modal";
 import OpdCard from "@/app/(admin)/_resources/printForm/opdCard";
+import { EditProfile } from "../../_resources/modalForm/editProfile";
 
 function Home() {
   const [dailyReports, setdailyReports] = useState([]);
@@ -91,6 +92,12 @@ function Home() {
   return (
     <div>
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
+        <Button
+          variant="projectbtn1"
+          onClick={() => handleEditSelection(<EditProfile />)}
+        >
+          Edit Profile
+        </Button>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Card>
             <CardHeader>
@@ -134,115 +141,6 @@ function Home() {
             </CardContent> */}
           </Card>
         </div>
-        <Button
-          variant="projectbtn1"
-          onClick={() => handleEditSelection(<NewAppointmentForm />)}
-        >
-          New Appointment
-        </Button>
-        <Card>
-          <CardHeader>
-            <div className="flex items-center gap-2">
-              Todays Appointment
-              {/* <SearchIcon className="h-4 w-4 opacity-25" /> */}
-              {/* <Input
-                className="min-w-0 flex-1"
-                placeholder="Search orders"
-                type="search"
-              /> */}
-            </div>
-          </CardHeader>
-          <CardContent className="p-0">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Date & Time</TableHead>
-                  <TableHead>Appointment ID</TableHead>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Mobile Number</TableHead>
-                  <TableHead>RequestFor</TableHead>
-                  <TableHead>Amount</TableHead>
-                  <TableHead>Payment</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {AppointmentData.map((appointment) => (
-                  <TableRow key={appointment.appointmentId}>
-                    <TableCell>
-                      {dateTimeConversion(appointment.appointmentDate)}
-                    </TableCell>
-                    <TableCell>
-                      <Button
-                        className="p-0"
-                        variant="link"
-                        onClick={() =>
-                          handlePrintSelection(
-                            <OpdCard
-                              name={appointment.name}
-                              age={appointment.age}
-                              appointmentId={appointment.appointmentId}
-                              gender={appointment.gender}
-                              // address={appointment.address}
-                            />
-                          )
-                        }
-                      >
-                        {appointment.appointmentId}
-                      </Button>
-                    </TableCell>
-                    <TableCell>{appointment.name}</TableCell>
-                    <TableCell>{appointment.phoneNumber}</TableCell>
-                    <TableCell>{appointment.requestFor}</TableCell>
-                    <TableCell className="font-semibold bg-pink-400 dark:text-black">
-                      &#8377;&nbsp;{appointment?.amount}
-                    </TableCell>
-                    <TableCell className="font-semibold bg-pink-400">
-                      {appointment.amountPaid ? "✅" : "❌"}
-                    </TableCell>
-                    {/* <TableCell>
-                      {new Date(appointment.appointmentDate).toLocaleDateString()}
-                    </TableCell> */}
-                    <TableCell>{appointment.totalVisits}</TableCell>
-                    {/* <TableCell>
-                      <button onClick={() => handleEditSelection({ appointment })}>
-                        {/* Edit 
-                        <EditIcon />
-                      </button>
-                    </TableCell>
-                    <TableCell>
-                      <button onClick={() => handleDeleteBooking(appointment._id)}>
-                        <DeleteIcon />
-                      </button>
-                    </TableCell>
-                    */}
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-            <Pagination className={""}>
-              <PaginationContent className={"flex justify-evenly w-full my-5"}>
-                <PaginationItem>
-                  <PaginationPrevious
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={currentPage === 1}
-                  />
-                </PaginationItem>
-                <PaginationItem>
-                  <span>
-                    &nbsp; Page {currentPage} of {totalPages}
-                    &nbsp;
-                  </span>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationNext
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                  />
-                </PaginationItem>
-              </PaginationContent>
-            </Pagination>
-          </CardContent>
-        </Card>
       </main>
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         {currentModal}

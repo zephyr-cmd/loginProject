@@ -18,8 +18,8 @@ const Login = () => {
   const [state, formAction] = useFormState(loginAction, initialState);
   // console.log("L-16, object", state);
   if (state.status === 200) {
-    const { name, token, role } = state.data;
-    localStorage.setItem("name", name);
+    const { _id, token, role } = state.data;
+    localStorage.setItem("_id", _id);
     localStorage.setItem("token", token);
     localStorage.setItem("role", role);
     // Redirect to dashboard

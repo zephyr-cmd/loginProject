@@ -352,3 +352,82 @@ export async function newEmployeeAction(prevState, formData) {
     return { message: "Failed to create Booking" };
   }
 }
+export async function editUser(prevState, formData) {
+  console.log("L-356, FormData editCustomerAction---->", formData);
+  console.log("L-357, PrevState editCustomerAction---->", prevState);
+
+  const userSchema = z.object({
+    _id: z.string(), // Assuming _id is a string
+
+    firstName: z
+      .string()
+      .min(1, "First Name is required.")
+      .max(100, "First Name cannot exceed 100 characters."),
+
+    lastName: z
+      .string()
+      .min(1, "Last Name is required.")
+      .max(100, "Last Name cannot exceed 100 characters."),
+
+    email: z.string().email("Invalid email address."),
+    phoneNumber: z
+      .string()
+      .min(10, "Phone Number must be at least 10 digits long.")
+      .max(15, "Phone Number cannot exceed 15 digits."),
+
+    dateOfBirth: z.string(), // Assuming date is sent as a string, typically in YYYY-MM-DD format
+
+    gender: z.enum(["Male", "Female", "Other's"]).optional(), // Gender is optional based on the form
+
+    sport: z.string().optional(),
+
+    youtubeLink: z.string().url("Invalid URL format.").optional(),
+
+    message: z.string().max(500, "Bio cannot exceed 500 characters."),
+  });
+  const validatedFields = userSchema.safeParse({
+    _id: formData.get("_id"),
+    firstName: formData.get("firstName"),
+    lastName: formData.get("lastName"),
+    email: formData.get("email"),
+    phoneNumber: formData.get("phoneNumber"),
+    dateOfBirth: formData.get("dateOfBirth"),
+    gender: formData.get("gender"),
+    sport: formData.get("sport"),
+    youtubeLink: formData.get("youtubeLink"),
+    message: formData.get("message"),
+  });
+  console.log("L-400-, validateFields: ", validatedFields.success);
+  // Return early if the form data is invalid
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: "Please Provide Correct Details",
+    };
+  }
+  const newObjData = validatedFields.data;
+  // console.log("L-318, apiResponse: editCustomerAction--->", newObjData);
+
+  try {
+    let apiResponse = {};
+    apiResponse = await axios.put(
+      `${ServerURI}/api/v1/admin/user/${newObjData._id}`,
+      newObjData
+    );
+    if (
+      apiResponse?.data?.status == 200 ||
+      apiResponse?.data?.status == 201 ||
+      apiResponse?.data?.status == 400 ||
+      apiResponse?.data?.status == 409 ||
+      apiResponse?.data?.status == 500
+    ) {
+      revalidatePath("/");
+      return { message: `${apiResponse?.data?.message}` };
+    } else {
+      return { message: `something went wrong !` };
+    }
+  } catch (error) {
+    console.log("L-348, error:", error);
+    return { message: "Failed to create Booking" };
+  }
+}

@@ -36,7 +36,7 @@ export function AdminHeader() {
               className="rounded-full"
               height="32"
               width="32"
-              src="/dr-vijay.png"
+              src="/manInBlack.jpg"
               style={{
                 aspectRatio: "32/32",
                 objectFit: "cover",
